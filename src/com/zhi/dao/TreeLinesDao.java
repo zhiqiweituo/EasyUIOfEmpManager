@@ -1,4 +1,4 @@
-package com.oracle.zibo.dao;
+package com.zhi.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.oracle.zibo.model.TreeLines;
+import com.zhi.model.TreeLines;
 
 public class TreeLinesDao {
 	public ArrayList<TreeLines> treeLinesList(Connection conn,int parentId) throws SQLException{

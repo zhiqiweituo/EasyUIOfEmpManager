@@ -1,22 +1,21 @@
-package com.oracle.zibo.dao;
+package com.zhi.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.oracle.zibo.model.Emp;
-import com.oracle.zibo.model.PageBean;
-import com.oracle.zibo.util.DateUtil;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.model.Emp;
+import com.zhi.model.PageBean;
+import com.zhi.util.DateUtil;
 
 public class EmpDao {
 	
 	public ResultSet empList(Connection conn,PageBean pageBean,Emp searchEmp) throws SQLException{
 		StringBuffer sb=new StringBuffer("select empno,ename,job,mgr,hiredate,sal,comm,t1.deptno,t2.dname "
 				+ " from emp t1,dept t2 where t1.deptno=t2.deptno");
-		//Ìõ¼şËÑË÷
-		if(searchEmp.getEmpno()!=null){//ÒòÎªÊÇ°ü×°Àà£¬ÎŞÄ¬ÈÏÖµ£¬Ö±½ÓÅĞ¶ÏÊÇ·ñÎª¿Õ
+		//æ¡ä»¶æœç´¢
+		if(searchEmp.getEmpno()!=null){//å› ä¸ºæ˜¯åŒ…è£…ç±»ï¼Œæ— é»˜è®¤å€¼ï¼Œç›´æ¥åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 			sb.append(" and t1.empno like '%"+searchEmp.getEmpno()+"%'");
 		}
 		if(searchEmp.getEname()!=null){
@@ -28,7 +27,7 @@ public class EmpDao {
 		
 		sb.append(" order by empno asc");
 		
-		//·ÖÒ³
+		//åˆ†é¡µ
 		if(pageBean!=null){
 			sb.append(" limit "+pageBean.getStart()+","+pageBean.getRows());
 		}
@@ -38,8 +37,8 @@ public class EmpDao {
 	public int empCount(Connection conn,Emp searchEmp)throws Exception{
 		StringBuffer sb=new StringBuffer("select count(*) as total from emp t1,dept t2 where t1.deptno=t2.deptno");
 		
-		//Ìõ¼şËÑË÷(¸´ÖÆÉÏÒ»¸öµÄ£¬ÓëlistÀïµÄÅĞ¶ÏÒ»ÖÂ)
-		if(searchEmp.getEmpno()!=null){//ÒòÎªÊÇ°ü×°Àà£¬ÎŞÄ¬ÈÏÖµ£¬Ö±½ÓÅĞ¶ÏÊÇ·ñÎª¿Õ
+		//æ¡ä»¶æœç´¢(å¤åˆ¶ä¸Šä¸€ä¸ªçš„ï¼Œä¸listé‡Œçš„åˆ¤æ–­ä¸€è‡´)
+		if(searchEmp.getEmpno()!=null){//å› ä¸ºæ˜¯åŒ…è£…ç±»ï¼Œæ— é»˜è®¤å€¼ï¼Œç›´æ¥åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 			sb.append(" and t1.empno like '%"+searchEmp.getEmpno()+"%'");
 		}
 		if(searchEmp.getEname()!=null){
@@ -58,7 +57,7 @@ public class EmpDao {
 		}
 	}
 	
-	//²éÑ¯emp±íÖĞËùÓĞ¹ÍÔ±µÄempno¡¢ename
+	//æŸ¥è¯¢empè¡¨ä¸­æ‰€æœ‰é›‡å‘˜çš„empnoã€ename
 	public ResultSet mgrList(Connection conn)throws Exception{
 		String sql="select empno,ename from emp";
 		PreparedStatement pstmt=conn.prepareStatement(sql);

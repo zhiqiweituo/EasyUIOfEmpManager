@@ -1,4 +1,4 @@
-package com.oracle.zibo.util;
+package com.zhi.util;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

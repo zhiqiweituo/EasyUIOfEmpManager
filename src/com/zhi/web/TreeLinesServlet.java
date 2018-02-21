@@ -1,7 +1,6 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,12 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.oracle.zibo.dao.TreeLinesDao;
-import com.oracle.zibo.model.TreeLines;
-import com.oracle.zibo.util.ResponseUtil;
-import com.oracle.zibo.util.DbUtil;
+import com.zhi.dao.TreeLinesDao;
+import com.zhi.model.TreeLines;
+import com.zhi.util.DbUtil;
+import com.zhi.util.ResponseUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -43,10 +41,10 @@ public class TreeLinesServlet extends HttpServlet {
 		
 		Connection conn=null;
 		try {
-			conn=dbUtil.getConn(); //获取数据库连接conn
+			conn=dbUtil.getConn(); //鑾峰彇鏁版嵁搴撹繛鎺onn
 			ArrayList<TreeLines> treeLinesList=treeLinesDao.treeLinesList(conn, 0);
 			
-			JSONArray jSONArray=listMenu(conn,treeLinesList); //返回树形菜单
+			JSONArray jSONArray=listMenu(conn,treeLinesList); //杩斿洖鏍戝舰鑿滃崟
 			
 			try {
 				ResponseUtil.write(resp, jSONArray);
@@ -102,7 +100,7 @@ public class TreeLinesServlet extends HttpServlet {
 //				jSONObject.put("id", treeLines.getId());
 //				jSONObject.put("text", treeLines.getText());
 //				
-//				//递归调用
+//				//閫掑綊璋冪敤
 //				jSONObject.put("children", listMenu(conn,treeLinesDao.treeLinesList(conn, treeLines.getId())));
 //				
 //			}else{

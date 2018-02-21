@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.EmpDao;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.JsonUtil;
-import com.oracle.zibo.util.ResponseUtil;
+import com.zhi.dao.DeptDao;
+import com.zhi.util.DbUtil;
+import com.zhi.util.JsonUtil;
+import com.zhi.util.ResponseUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-@WebServlet(name="EmpMgrListServlet",urlPatterns="/empMgrList")
-public class EmpMgrListServlet extends HttpServlet {
+@WebServlet(name="DeptComboListServlet",urlPatterns="/deptComboList")
+public class DeptComboListServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -27,32 +27,27 @@ public class EmpMgrListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private DbUtil dbUtil=new DbUtil();
-	private EmpDao empDao=new EmpDao();
+	private DeptDao deptDao=new DeptDao();
 	
-	@Override
+	@Override //æ­¤å¤„åªæä¾›ä¸€ä¸ªdoGetæ–¹æ³•ï¼Œå‰å°éœ€è¦Ajaxçš„getè¯·æ±‚ï¼ˆæœ€å¥½doGetå’ŒdoPostéƒ½æä¾›ï¼‰
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Connection conn=null;
 		try {
 			conn=dbUtil.getConn();
-			JSONArray mgrListJSONArray=JsonUtil.formatRsToJsonArray(empDao.mgrList(conn));
-
+			JSONArray jSONArray=JsonUtil.formatRsToJsonArray(deptDao.deptList(conn, null, null));
+			
 			JSONArray result=new JSONArray();
 			
-			//¹¹ÔìµÚÒ»ĞĞ£¨""£¬"ÇëÑ¡Ôñ²¿ÃÅÃû³Æ"£©
+			//æ„é€ ç¬¬ä¸€è¡Œï¼ˆ""ï¼Œ"è¯·é€‰æ‹©éƒ¨é—¨åç§°"ï¼‰
 			JSONObject jSONObject=new JSONObject();
-			jSONObject.put("empno", "");
-			jSONObject.put("ename", "ÇëÑ¡ÔñËùÊôÁìµ¼");
+			jSONObject.put("deptno", "");
+			jSONObject.put("dname", "è¯·é€‰æ‹©éƒ¨é—¨åç§°");
 			jSONObject.put("selected", "true");
 			result.add(jSONObject);
 			
-			//¹¹ÔìÊ£ÓàÕæÊµÊı¾İ
-			for(int i=0;i<mgrListJSONArray.size();i++){
-				jSONObject=(JSONObject)mgrListJSONArray.get(i);
+			//æ„é€ å‰©ä½™çœŸå®æ•°æ®
+			for(int i=0;i<jSONArray.size();i++){
+				jSONObject=(JSONObject)jSONArray.get(i);
 				result.add(jSONObject);
 			}
 			

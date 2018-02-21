@@ -1,10 +1,10 @@
-package com.oracle.zibo.model;
+package com.zhi.model;
 
 import java.util.Date;
 
 public class Emp {
 
-	private Integer empno;//基本数据类型->一律使用包装类
+	private Integer empno;//鍩烘湰鏁版嵁绫诲瀷->涓�寰嬩娇鐢ㄥ寘瑁呯被
 	private String ename;
 	private String job;
 	private Integer mgr;

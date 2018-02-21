@@ -1,4 +1,4 @@
-package com.oracle.zibo.util;
+package com.zhi.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,10 +23,10 @@ public class DbUtil {
 		DbUtil dbUtil=new DbUtil();
 		try {
 			Connection conn=dbUtil.getConn();
-			System.out.println(conn+"\nÊı¾İ¿âÁ¬½Ó³É¹¦");
+			System.out.println(conn+"\næ•°æ®åº“è¿æ¥æˆåŠŸ");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
 		}
 	}
 }

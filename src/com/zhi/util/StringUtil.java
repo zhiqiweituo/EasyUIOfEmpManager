@@ -1,7 +1,7 @@
-package com.oracle.zibo.util;
+package com.zhi.util;
 
 public class StringUtil {
-	//ÅĞ¶Ï´«ÈëµÄ×Ö·û´®ÊÇ·ñÎª¿Õ»ò""
+	//åˆ¤æ–­ä¼ å…¥çš„å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©ºæˆ–""
 	public static boolean isEmpty(String str){
 		if(str.isEmpty() || str==null){
 			return true;
@@ -9,7 +9,7 @@ public class StringUtil {
 			return false;
 		}
 	}
-	//ÅĞ¶Ï´«ÈëµÄ×Ö·û´®ÊÇ·ñ²»Îª¿Õ²¢ÇÒ²»Îª""
+	//åˆ¤æ–­ä¼ å…¥çš„å­—ç¬¦ä¸²æ˜¯å¦ä¸ä¸ºç©ºå¹¶ä¸”ä¸ä¸º""
 	public static boolean isNotEmpty(String str){
 		if(str!=null && !str.isEmpty()){
 			return true;

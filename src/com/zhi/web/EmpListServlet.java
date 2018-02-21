@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.EmpDao;
-import com.oracle.zibo.model.Emp;
-import com.oracle.zibo.model.PageBean;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.JsonUtil;
-import com.oracle.zibo.util.ResponseUtil;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.dao.EmpDao;
+import com.zhi.model.Emp;
+import com.zhi.model.PageBean;
+import com.zhi.util.DbUtil;
+import com.zhi.util.JsonUtil;
+import com.zhi.util.ResponseUtil;
+import com.zhi.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -42,13 +42,13 @@ public class EmpListServlet extends HttpServlet {
 		String rows=request.getParameter("rows");
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		
-		//¶àÌõ¼şËÑËÑ,½ÓÊÜÇ°Ì¨ËÑË÷Ìõ¼ş
+		//å¤šæ¡ä»¶æœæœ,æ¥å—å‰å°æœç´¢æ¡ä»¶
 		String s_empno=request.getParameter("s_empno");
 		String s_ename=request.getParameter("s_ename");
 		String s_deptno=request.getParameter("s_deptno");
 		
 		Emp searchEmp=new Emp();
-		//ÅĞ¶ÏÊÇ·ñÎª¿Õ,²»Îª¿ÕÈûÈësearchEmp¶ÔÏó
+		//åˆ¤æ–­æ˜¯å¦ä¸ºç©º,ä¸ä¸ºç©ºå¡å…¥searchEmpå¯¹è±¡
 		if(StringUtil.isNotEmpty(s_empno)){
 			searchEmp.setEmpno(Integer.parseInt(s_empno));
 		}

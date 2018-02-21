@@ -1,9 +1,8 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.DeptDao;
-import com.oracle.zibo.model.Dept;
-import com.oracle.zibo.model.PageBean;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.JsonUtil;
-import com.oracle.zibo.util.ResponseUtil;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.dao.DeptDao;
+import com.zhi.model.Dept;
+import com.zhi.model.PageBean;
+import com.zhi.util.DbUtil;
+import com.zhi.util.JsonUtil;
+import com.zhi.util.ResponseUtil;
+import com.zhi.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -41,15 +40,15 @@ public class DeptListServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		ArrayList<Dept> deptList=new ArrayList<Dept>();
-//		Dept d1=new Dept(10,"ÑĞ·¢²¿","¼ÃÄÏ");
-//		Dept d2=new Dept(20,"ÏúÊÛ²¿","Çàµº");
-//		Dept d3=new Dept(30,"¹¤³Ì²¿","×Í²©");
-//		Dept d4=new Dept(40,"ºóÇÚ²¿","Î«·»");
+//		Dept d1=new Dept(10,"ç ”å‘éƒ¨","æµå—");
+//		Dept d2=new Dept(20,"é”€å”®éƒ¨","é’å²›");
+//		Dept d3=new Dept(30,"å·¥ç¨‹éƒ¨","æ·„åš");
+//		Dept d4=new Dept(40,"åå‹¤éƒ¨","æ½åŠ");
 //		deptList.add(d1);
 //		deptList.add(d2);
 //		deptList.add(d3);
 //		deptList.add(d4);
-//		//ÒÔÉÏÄ£ÄâÊı¾İ¿â²éÑ¯£¬·µ»ØµÄ²¿ÃÅÁĞ±í
+//		//ä»¥ä¸Šæ¨¡æ‹Ÿæ•°æ®åº“æŸ¥è¯¢ï¼Œè¿”å›çš„éƒ¨é—¨åˆ—è¡¨
 //		
 //		JSONArray jSONArray=new JSONArray();
 //		for(Dept d:deptList){
@@ -61,8 +60,8 @@ public class DeptListServlet extends HttpServlet {
 //		}
 //		
 //		JSONObject result=new JSONObject();
-//		result.put("rows", jSONArray); //easyUI¹æ¶¨±ØĞëÓÃrows
-//		result.put("total", deptList.size()); //easyUI¹æ¶¨±ØĞëÓÃtotal
+//		result.put("rows", jSONArray); //easyUIè§„å®šå¿…é¡»ç”¨rows
+//		result.put("total", deptList.size()); //easyUIè§„å®šå¿…é¡»ç”¨total
 //		try {
 //			ResponseUtil.write(resp, result);
 //		} catch (Exception e) {
@@ -70,8 +69,8 @@ public class DeptListServlet extends HttpServlet {
 //			e.printStackTrace();
 //		}
 		
-		String page=req.getParameter("page"); //easyUI¹æ¶¨±ØĞëÓÃpage
-		String rows=req.getParameter("rows"); //easyUI¹æ¶¨±ØĞëÓÃrows
+		String page=req.getParameter("page"); //easyUIè§„å®šå¿…é¡»ç”¨page
+		String rows=req.getParameter("rows"); //easyUIè§„å®šå¿…é¡»ç”¨rows
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		
 		String s_dname=req.getParameter("s_dname");
@@ -93,8 +92,8 @@ public class DeptListServlet extends HttpServlet {
 			int total=deptDao.deptCount(conn, dept);
 			
 			JSONObject result=new JSONObject();
-			result.put("rows", deptJSONArray); //easyUI¹æ¶¨±ØĞëÓÃrows
-			result.put("total", total); //easyUI¹æ¶¨±ØĞëÓÃtotal
+			result.put("rows", deptJSONArray); //easyUIè§„å®šå¿…é¡»ç”¨rows
+			result.put("total", total); //easyUIè§„å®šå¿…é¡»ç”¨total
 			
 			try {
 				ResponseUtil.write(resp, result);

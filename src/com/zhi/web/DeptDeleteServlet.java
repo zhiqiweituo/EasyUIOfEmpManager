@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.DeptDao;
-import com.oracle.zibo.dao.EmpDao;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.ResponseUtil;
+import com.zhi.dao.DeptDao;
+import com.zhi.dao.EmpDao;
+import com.zhi.util.DbUtil;
+import com.zhi.util.ResponseUtil;
 
 import net.sf.json.JSONObject;
 
@@ -45,7 +45,7 @@ public class DeptDeleteServlet extends HttpServlet {
 				boolean f=empDao.getEmpByDeptno(con, str[i]);
 				if(f){
 					result.put("errorIndex", i);
-					result.put("errorMsg", "²¿ÃÅÏÂÃæÓĞ¹ÍÔ±£¬²»ÄÜÉ¾³ı£¡");
+					result.put("errorMsg", "éƒ¨é—¨ä¸‹é¢æœ‰é›‡å‘˜ï¼Œä¸èƒ½åˆ é™¤ï¼");
 					ResponseUtil.write(response, result);
 					return;
 				}
@@ -55,7 +55,7 @@ public class DeptDeleteServlet extends HttpServlet {
 				result.put("flag", "true");
 				result.put("delNums", delNums);
 			}else{
-				result.put("errorMsg", "É¾³ıÊ§°Ü");
+				result.put("errorMsg", "åˆ é™¤å¤±è´¥");
 			}
 			ResponseUtil.write(response, result);
 		}catch(Exception e){

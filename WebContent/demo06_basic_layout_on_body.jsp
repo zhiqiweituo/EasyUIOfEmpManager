@@ -17,7 +17,7 @@
 </div>
 <div data-options="region:'south'" style="height:50px;">
 	<div style="font-size: 14px; text-align: center;">
-		<p style="font-size: 14px; text-align: center;">Copyright © 2018 - 2019 甲骨文淄博软件中心, 鲁ICP备14024044号-2, All Rights Reserved.</p>
+		<p style="font-size: 14px; text-align: center;">Copyright © 2018 - 2019 稚序员网, All Rights Reserved.</p>
 	</div>
 </div>
 <div data-options="region:'west',split:true" title="导航菜单" style="width:200px;">

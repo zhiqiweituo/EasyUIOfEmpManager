@@ -1,9 +1,9 @@
-package com.oracle.zibo.model;
+package com.zhi.model;
 
 public class PageBean {
-	private int page; //�ڼ�ҳ
-	private int rows; //ÿҳ��¼��
-	//private int start; //��ʼҳ
+	private int page; //第几页
+	private int rows; //每页记录数
+	//private int start; //起始页
 	
 	public PageBean(int page, int rows) {
 		super();

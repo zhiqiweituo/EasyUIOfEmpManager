@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.EmpDao;
-import com.oracle.zibo.model.Emp;
-import com.oracle.zibo.util.DateUtil;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.ResponseUtil;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.dao.EmpDao;
+import com.zhi.model.Emp;
+import com.zhi.util.DateUtil;
+import com.zhi.util.DbUtil;
+import com.zhi.util.ResponseUtil;
+import com.zhi.util.StringUtil;
 
 import net.sf.json.JSONObject;
 
@@ -61,7 +61,7 @@ public class EmpSaveServlet extends HttpServlet {
 		}
 		emp.setSal(Double.parseDouble(sal));
 		
-		//´¦ÀíÃ»ÓĞÓ¶½ğµÄ¹ÍÔ±Çé¿ö
+		//å¤„ç†æ²¡æœ‰ä½£é‡‘çš„é›‡å‘˜æƒ…å†µ
 		if(StringUtil.isNotEmpty(comm)){ //java.lang.NumberFormatException: empty String
 			emp.setComm(Double.parseDouble(comm));			
 		}
@@ -75,22 +75,22 @@ public class EmpSaveServlet extends HttpServlet {
 			int saveNums=0;
 			JSONObject result=new JSONObject();
 
-			if(empno==null){ //Ìí¼Ó
-				//Ôö¼Ó¹ÍÔ±£¬²é³öÏµÍ³×î´ó±àºÅ£¬È»ºó+1
-				//²¢ÇÒ£¬¿¼ÂÇ²¢·¢·ÃÎÊÊ±£¬Ó¦¸Ã¼ÓÏß³ÌËø£¨ÔİÊ±²»¿¼ÂÇ£¬1Äê¹¤×÷¾­ÑéÖ®ºóÔÙ¿¼ÂÇ£©
+			if(empno==null){ //æ·»åŠ 
+				//å¢åŠ é›‡å‘˜ï¼ŒæŸ¥å‡ºç³»ç»Ÿæœ€å¤§ç¼–å·ï¼Œç„¶å+1
+				//å¹¶ä¸”ï¼Œè€ƒè™‘å¹¶å‘è®¿é—®æ—¶ï¼Œåº”è¯¥åŠ çº¿ç¨‹é”ï¼ˆæš‚æ—¶ä¸è€ƒè™‘ï¼Œ1å¹´å·¥ä½œç»éªŒä¹‹åå†è€ƒè™‘ï¼‰
 				int maxEmpno=empDao.findMaxEmpno(conn);
 				emp.setEmpno(maxEmpno+1);
 				saveNums=empDao.empAdd(conn, emp);
-			}else{ //ĞŞ¸Ä
+			}else{ //ä¿®æ”¹
 				saveNums=empDao.empModify(conn, emp);
 			}
 
 			if(saveNums>0){
 				result.put("flag", "true");
-				result.put("msg", "±£´æ³É¹¦");
+				result.put("msg", "ä¿å­˜æˆåŠŸ");
 			}else{
 				result.put("flag", "false");
-				result.put("msg", "±£´æÊ§°Ü");
+				result.put("msg", "ä¿å­˜å¤±è´¥");
 			}
 			ResponseUtil.write(response, result);
 		}catch(Exception e){

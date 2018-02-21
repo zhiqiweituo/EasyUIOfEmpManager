@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.EmpDao;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.ResponseUtil;
+import com.zhi.dao.EmpDao;
+import com.zhi.util.DbUtil;
+import com.zhi.util.JsonUtil;
+import com.zhi.util.ResponseUtil;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-@WebServlet(name="EmpDeleteServlet",urlPatterns="/empDelete")
-public class EmpDeleteServlet extends HttpServlet {
+@WebServlet(name="EmpMgrListServlet",urlPatterns="/empMgrList")
+public class EmpMgrListServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -34,29 +36,34 @@ public class EmpDeleteServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String delIds=req.getParameter("delIds");
-		
 		Connection conn=null;
 		try {
 			conn=dbUtil.getConn();
+			JSONArray mgrListJSONArray=JsonUtil.formatRsToJsonArray(empDao.mgrList(conn));
+
+			JSONArray result=new JSONArray();
 			
-			JSONObject result=new JSONObject();
-			int delNums=empDao.empDelete(conn, delIds);
-			if(delNums>0){
-				result.put("flag", "true");
-				result.put("delNums", delNums);
-			}else{
-				result.put("flag", "false");
-				result.put("msg", "ɾ��ʧ��");
+			//构造第一行（""，"请选择部门名称"）
+			JSONObject jSONObject=new JSONObject();
+			jSONObject.put("empno", "");
+			jSONObject.put("ename", "请选择所属领导");
+			jSONObject.put("selected", "true");
+			result.add(jSONObject);
+			
+			//构造剩余真实数据
+			for(int i=0;i<mgrListJSONArray.size();i++){
+				jSONObject=(JSONObject)mgrListJSONArray.get(i);
+				result.add(jSONObject);
 			}
+			
 			ResponseUtil.write(resp, result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{
+		} finally {
 			try {
 				dbUtil.closeConn(conn);
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

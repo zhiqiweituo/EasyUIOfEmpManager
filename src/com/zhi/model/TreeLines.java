@@ -1,4 +1,4 @@
-package com.oracle.zibo.model;
+package com.zhi.model;
 
 public class TreeLines {
 	private Integer id;

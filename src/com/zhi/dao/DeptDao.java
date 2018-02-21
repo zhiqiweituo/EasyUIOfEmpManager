@@ -1,13 +1,13 @@
-package com.oracle.zibo.dao;
+package com.zhi.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.oracle.zibo.model.Dept;
-import com.oracle.zibo.model.PageBean;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.model.Dept;
+import com.zhi.model.PageBean;
+import com.zhi.util.StringUtil;
 
 public class DeptDao {
 	//MyBatis
@@ -52,7 +52,7 @@ public class DeptDao {
 	 */
 	public int deptDelete(Connection conn,String delIds)throws Exception{
 		/**
-		 * 实际项目不建议使用in
+		 * 瀹為檯椤圭洰涓嶅缓璁娇鐢╥n
 		 */
 		String sql="delete from dept where deptno in("+delIds+")";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class DeptDao {
 	}
 	
 	public int findMaxDeptno(Connection conn) throws SQLException{
-		//选出数据库中最大的部门编号
+		//閫夊嚭鏁版嵁搴撲腑鏈�澶х殑閮ㄩ棬缂栧彿
 		String sql="select max(deptno) as maxDeptno from dept";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		ResultSet rs=pstmt.executeQuery();

@@ -1,4 +1,4 @@
-package com.oracle.zibo.web;
+package com.zhi.web;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oracle.zibo.dao.DeptDao;
-import com.oracle.zibo.model.Dept;
-import com.oracle.zibo.util.DbUtil;
-import com.oracle.zibo.util.ResponseUtil;
-import com.oracle.zibo.util.StringUtil;
+import com.zhi.dao.DeptDao;
+import com.zhi.model.Dept;
+import com.zhi.util.DbUtil;
+import com.zhi.util.ResponseUtil;
+import com.zhi.util.StringUtil;
 
 import net.sf.json.JSONObject;
 
@@ -50,20 +50,20 @@ public class DeptSaveServlet extends HttpServlet {
 		try{
 			conn=dbUtil.getConn();
 			int saveNums=0;
-			if(StringUtil.isNotEmpty(deptno)){ //修改
+			if(StringUtil.isNotEmpty(deptno)){ //淇敼
 				saveNums=deptDao.deptModify(conn, dept);
-			}else{ //添加
-				dept.setDeptno(deptDao.findMaxDeptno(conn)+10); //最大deptno+10
-				saveNums=deptDao.deptAdd(conn, dept); //添加
+			}else{ //娣诲姞
+				dept.setDeptno(deptDao.findMaxDeptno(conn)+10); //鏈�澶eptno+10
+				saveNums=deptDao.deptAdd(conn, dept); //娣诲姞
 			}
 
 			JSONObject result=new JSONObject();
 			if(saveNums>0){
 				result.put("flag", "true");
-				result.put("msg", "保存成功");
+				result.put("msg", "淇濆瓨鎴愬姛");
 			}else{
 				result.put("flag", "false");
-				result.put("msg", "保存失败");
+				result.put("msg", "淇濆瓨澶辫触");
 			}
 			ResponseUtil.write(response, result);
 		}catch(Exception e){

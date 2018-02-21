@@ -17,7 +17,7 @@
 			<h2 style="margin-top: 10px; margin-left: 100px;">雇员信息管理</h2>
 		</div>
 		<div data-options="region:'south',split:true" style="height:60px;">
-			<p style="font-size: 14px; text-align: center;">Copyright © 2018 - 2019 甲骨文淄博软件中心, 鲁ICP备14024044号-2, All Rights Reserved.</p>
+			<p style="font-size: 14px; text-align: center;">Copyright © 2018 - 2019 稚序员网, All Rights Reserved.</p>
 		</div>
 		<div data-options="region:'west',split:true" title="菜单管理" style="width:220px;">
 			<!-- border="flase"去边框 -->
